@@ -3,13 +3,15 @@
 	assembly="Southsand"
 	namespace="Southsand.Model">
 
-	<class name="Customer" table="Customers">
+	<class name="Address" table="Addresses">
 		<id name="Id">
 			<generator class="identity"/>
 		</id>
-		<property name="Name"/>
-		<property name="Birthday"/>
-		<many-to-one name="HomeAddress"/>
+		<property name="City"/>
+		<property name="Street"/>
+		<property name="Zip"/>
+		<property name="Number"/>
+		<property name="Country"/>
 	</class>
 
 </hibernate-mapping>
