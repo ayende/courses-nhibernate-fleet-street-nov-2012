@@ -28,10 +28,10 @@
 			<generator class="identity"/>
 		</id>
 
-		<set name="Customers" table="CustomerLocations">
+		<bag name="Customers" table="CustomerLocations" inverse="true" >
 			<key column="Location"/>
 			<many-to-many class="Customer" column="Customer"/>
-		</set>
+		</bag>
 	</class>
 
 

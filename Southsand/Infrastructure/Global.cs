@@ -13,7 +13,7 @@ namespace Southsand.Infrastructure
 				var cfg = new Configuration()
 			   .DataBaseIntegration(properties =>
 			   {
-				   properties.SchemaAction = SchemaAutoAction.Update;
+				   properties.SchemaAction = SchemaAutoAction.Create;
 				   properties.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
 				   properties.ConnectionStringName = Environment.MachineName;
 			   })

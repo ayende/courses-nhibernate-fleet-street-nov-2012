@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+	assembly="Southsand"
+	namespace="Southsand.Model">
+
+
+	<class name="Animal" abstract="true" table="Animals">
+		<id name="Id">
+			<generator class="hilo"/>
+		</id>
+		<property name="Name"/>
+		<union-subclass name="Dog" table="Dogs">
+			<property name="Barks"/>
+		</union-subclass>
+
+		<union-subclass name="Cat" table="Cats">
+			<property name="Purrs"/>
+		</union-subclass>
+	</class>
+	<!--<class name="Animal" abstract="true" table="Animals">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+		<property name="Name"/>
+		<joined-subclass name="Dog" table="Dogs">
+			<key column="Id"/>
+			<property name="Barks"/>
+		</joined-subclass>
+
+		<joined-subclass name="Cat" table="Cats">
+			<key column="Id"/>
+			<property name="Purrs"/>
+		</joined-subclass>
+	</class>-->
+	<!--<class name="Animal" abstract="true" table="Animals"
+	 discriminator-value="NULL">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+		<discriminator column="Type"/>
+		<property name="Name"/>
+		<subclass name="Dog" discriminator-value="Dog">
+			<property name="Barks"/>
+		</subclass>
+
+		<subclass name="Cat" discriminator-value="Cat">
+			<property name="Purrs"/>
+		</subclass>
+	 </class>-->
+
+	<!--<class name="Dog" table="Dogs">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+		<property name="Name"/>
+		<property name="Barks"/>
+
+	</class>
+
+	<class name="Cat" table="Cats">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+		<property name="Name"/>
+		<property name="Purrs"/>
+	</class>-->
+
+</hibernate-mapping>
