@@ -3,12 +3,17 @@
 	public abstract class Animal
 	{
 		public virtual int Id { get; set; }
-		public virtual string Name { get; set; } 
+		public virtual string Name { get; set; }
 	}
 
 	public class Dog : Animal
 	{
 		public virtual bool Barks { get; set; }
+	}
+
+	public class Shepherd : Dog
+	{
+		public virtual string Location { get; set; }
 	}
 
 	public class Cat : Animal

@@ -16,10 +16,10 @@
 			<one-to-many class="Order"/>
 		</bag>
 
-		<set name="Locations" table="CustomerLocations">
+		<bag name="Locations" table="Visits" inverse="true">
 			<key column="Customer"/>
-			<many-to-many class="Location" column="Location"/>
-		</set>
+			<many-to-many column="Location" class="Location"/>
+		</bag>
 
 	</class>
 
@@ -27,12 +27,17 @@
 		<id name="Id">
 			<generator class="identity"/>
 		</id>
-
-		<bag name="Customers" table="CustomerLocations" inverse="true" >
-			<key column="Location"/>
-			<many-to-many class="Customer" column="Customer"/>
-		</bag>
+		<property name="Name"/>
 	</class>
 
+	<class name="Visit" table="Visits">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+		<property name="At"/>
+		<property name="Duration"/>
+		<many-to-one name="Customer"/>
+		<many-to-one name="Location"/>
+	</class>
 
 </hibernate-mapping>

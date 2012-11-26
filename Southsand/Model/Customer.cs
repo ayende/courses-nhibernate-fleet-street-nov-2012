@@ -14,6 +14,15 @@ namespace Southsand.Model
 		public virtual ICollection<Order> Orders { get; set; }
 	}
 
+	public class Visit
+	{
+		public virtual long Id { get; set; }
+		public virtual Customer Customer { get; set; }
+		public virtual Location Location { get; set; }
+		public virtual DateTime At { get; set; }
+		public virtual TimeSpan Duration { get; set; }
+	}
+
 	public class Location
 	{
 		public virtual long Id { get; set; }

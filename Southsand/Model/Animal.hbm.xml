@@ -3,18 +3,23 @@
 	assembly="Southsand"
 	namespace="Southsand.Model">
 
+	<union-subclass name="Shepherd" table="Shepherds" 
+		extends="Dog">
+		<property name="Location" not-null="true"/>
+	</union-subclass>
+
 
 	<class name="Animal" abstract="true" table="Animals">
 		<id name="Id">
 			<generator class="hilo"/>
 		</id>
-		<property name="Name"/>
+		<property name="Name" not-null="true"/>
 		<union-subclass name="Dog" table="Dogs">
-			<property name="Barks"/>
+			<property name="Barks" not-null="true"/>
 		</union-subclass>
 
 		<union-subclass name="Cat" table="Cats">
-			<property name="Purrs"/>
+			<property name="Purrs" not-null="true"/>
 		</union-subclass>
 	</class>
 	<!--<class name="Animal" abstract="true" table="Animals">
@@ -38,7 +43,7 @@
 			<generator class="identity"/>
 		</id>
 		<discriminator column="Type"/>
-		<property name="Name"/>
+		<property name="Name" not-null="true"/>
 		<subclass name="Dog" discriminator-value="Dog">
 			<property name="Barks"/>
 		</subclass>

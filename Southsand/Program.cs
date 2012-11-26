@@ -23,29 +23,38 @@ namespace Southsand
 			using (var session = Global.SessionFactory.OpenSession())
 			using(session.BeginTransaction())
 			{
-				session.Save(new Dog
+				var customer = new Customer()
 					{
-						Name = "Arava",
-						Barks = true, // OMG HOW MUCH
-					});
+						Name = "Oren",
+						Birthday = DateTime.Now
+					};
+				session.Save(customer);
 
-				session.Save(new Cat
+				var location = new Location
 					{
-						Name = "Lady",
-						Purrs = false
+						Name = "London",
+					};
+				session.Save(location);
+
+				session.Save(new Visit
+					{
+						Location = location,
+						Customer = customer,
+						At = DateTime.Today.AddDays(-1),
+						Duration = TimeSpan.FromDays(7)
 					});
-				
 				session.Transaction.Commit();
 			}
 
 			using (var session = Global.SessionFactory.OpenSession())
 			using (session.BeginTransaction())
 			{
-				foreach (var animal in session.QueryOver<Animal>().List())
+				var customer = session.Get<Customer>(1L);
+				Console.WriteLine(customer.Name);
+				foreach (var location in customer.Locations)
 				{
-					Console.WriteLine(animal.Name);
+					Console.WriteLine("\t{0}", location.Name);
 				}
-				session.Transaction.Commit();
 			}
 
 			//Application.EnableVisualStyles();
