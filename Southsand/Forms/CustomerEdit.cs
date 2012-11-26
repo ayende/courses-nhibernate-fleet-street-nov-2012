@@ -9,18 +9,28 @@ using System.Windows.Forms;
 using NHibernate;
 using Southsand.Infrastructure;
 using Southsand.Model;
+using NHibernate.Linq;
 
 namespace Southsand.Forms
 {
 	public partial class CustomerEdit : NHibernateForm
 	{
-		private Customer customer;
-
 		public CustomerEdit(long id) : this()
 		{
-			customer = Session.Get<Customer>(id);
+			var customer = (
+				               from c in Session.Query<Customer>()
+				               where c.Id == id
+				               select new
+					               {
+						               c.Name,
+						               c.Birthday,
+						               c.HomeAddress.City
+					               }
+			               ).Single();
+
 			textBox1.Text = customer.Name;
 			dateTimePicker1.Value = customer.Birthday;
+			label1.Text = customer.City;
 		}
 
 		public CustomerEdit()
@@ -35,8 +45,8 @@ namespace Southsand.Forms
 
 		private void SaveButton_Click(object sender, EventArgs e)
 		{
-			customer.Name = textBox1.Text;
-			customer.Birthday = dateTimePicker1.Value;
+			//customer.Name = textBox1.Text;
+			//customer.Birthday = dateTimePicker1.Value;
 
 			Commit();
 			Close();

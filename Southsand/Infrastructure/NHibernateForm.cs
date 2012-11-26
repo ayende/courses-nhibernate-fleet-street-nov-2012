@@ -7,14 +7,19 @@ namespace Southsand.Infrastructure
 	{
 		public ISession Session { get; set; }
 
-		protected override void OnLoad(System.EventArgs e)
+		public NHibernateForm()
 		{
+			if (DesignMode)
+				return;
+
 			Session = Global.SessionFactory.OpenSession();
-			base.OnLoad(e);
 		}
 
 		protected override void OnClosed(System.EventArgs e)
 		{
+			if (DesignMode)
+				return;
+
 			if (Session != null)
 				Session.Dispose();
 			base.OnClosed(e);

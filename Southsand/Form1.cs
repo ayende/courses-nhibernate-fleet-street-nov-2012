@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NHibernate.Cfg;
+using NHibernate;
 using Southsand.Forms;
 using Southsand.Infrastructure;
 using Southsand.Model;
-using Environment = System.Environment;
 using NHibernate.Linq;
 
 namespace Southsand
@@ -42,10 +34,12 @@ namespace Southsand
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			using (var session = Global.SessionFactory.OpenSession())
+			using (var session = Global.SessionFactory.OpenStatelessSession())
 			{
 				CustomersGrid.AutoGenerateColumns = true;
-				CustomersGrid.DataSource = session.Query<Customer>().ToList();
+				var dataSource = (from c in session.Query<Customer>()
+				                  select new {c.Id, c.Name, c.Birthday}).ToList();
+				CustomersGrid.DataSource = dataSource;
 			}
 		}
 
