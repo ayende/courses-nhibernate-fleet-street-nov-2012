@@ -12,6 +12,8 @@
 		<property name="Zip"/>
 		<property name="Number"/>
 		<property name="Country"/>
+		<property name="CustomerCount"
+			formula="(select count(*) from Customers c where c.HomeAddress = Id)"/>
 	</class>
 
 </hibernate-mapping>

@@ -8,5 +8,7 @@
 		public virtual string Street { get; set; }
 		public virtual string Zip { get; set; }
 		public virtual string Country { get; set; } 
+
+		public virtual int CustomerCount { get; set; }
 	}
 }

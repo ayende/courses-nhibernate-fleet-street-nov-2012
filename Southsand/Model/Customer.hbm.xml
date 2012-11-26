@@ -10,6 +10,29 @@
 		<property name="Name"/>
 		<property name="Birthday"/>
 		<many-to-one name="HomeAddress"/>
+
+		<bag name="Orders" cascade="all" inverse="true">
+			<key column="Customer"/>
+			<one-to-many class="Order"/>
+		</bag>
+
+		<set name="Locations" table="CustomerLocations">
+			<key column="Customer"/>
+			<many-to-many class="Location" column="Location"/>
+		</set>
+
 	</class>
+
+	<class name="Location" table="Locations">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+
+		<set name="Customers" table="CustomerLocations">
+			<key column="Location"/>
+			<many-to-many class="Customer" column="Customer"/>
+		</set>
+	</class>
+
 
 </hibernate-mapping>
