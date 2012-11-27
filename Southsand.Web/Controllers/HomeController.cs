@@ -14,9 +14,11 @@ namespace Southsand.Web.Controllers
 
 		 public ActionResult Update(long id, string email, int version)
 		 {
-			 var customer = Session.Get<Customer>(id);
+			 var customer = Session.Get<Customer>(id, LockMode.Force);
 			 if(customer.Version != version)
 				throw new StaleObjectStateException("Customer", id);
+
+			Session.Lock(customer, LockMode.Force);
 
 			 customer.Email = email;
 			
