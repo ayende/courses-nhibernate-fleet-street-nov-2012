@@ -3,54 +3,21 @@
 	assembly="Southsand"
 	namespace="Southsand.Model">
 
-	<class name="Customer" table="Customers">
-		<id name="Id">
-			<generator class="identity"/>
+	<class name="Customer"  table="Customers">
+		<id name="CustomerId">
+			<generator class="increment"/>
+		</id>
+		<property name="Email"/>
+		<one-to-one class="Person"
+		 name="Person"
+		 property-ref="Customer"/>
+	</class>
+
+	<class name="Person" 	table="People">
+		<id name="PersonId">
+			<generator class="increment"/>
 		</id>
 		<property name="Name"/>
-		<property name="Birthday"/>
-
-		<component name="BillingAddress">
-			<property column="BillingCity" name="City"/>
-			<property column="BillingStreet" name="Street"/>
-			<property column="BillingZip"  name="Zip"/>
-			<property column="BillingNumber" name="Number"/>
-			<property column="BillingCountry" name="Country"/>
-		</component>
-
-		<component name="HomeAddress">
-			<property column="HomeCity" name="City"/>
-			<property column="HomeStreet" name="Street"/>
-			<property column="HomeZip"  name="Zip"/>
-			<property column="HomeNumber" name="Number"/>
-			<property column="HomeCountry" name="Country"/>
-		</component>
-
-		<component name="WorkAddress">
-			<property column="WorkCity" name="City"/>
-			<property column="WorkStreet" name="Street"/>
-			<property column="WorkZip"  name="Zip"/>
-			<property column="WorkNumber" name="Number"/>
-			<property column="WorkCountry" name="Country"/>
-		</component>
-
+		<many-to-one name="Customer" column="CustomerId" unique="true"/>
 	</class>
-
-	<class name="Location" table="Locations">
-		<id name="Id">
-			<generator class="identity"/>
-		</id>
-		<property name="Name"/>
-	</class>
-
-	<class name="Visit" table="Visits">
-		<id name="Id">
-			<generator class="identity"/>
-		</id>
-		<property name="At"/>
-		<property name="Duration"/>
-		<many-to-one name="Customer"/>
-		<many-to-one name="Location"/>
-	</class>
-
 </hibernate-mapping>

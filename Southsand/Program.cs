@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Southsand.Infrastructure;
 using Southsand.Model;
 
@@ -14,11 +15,42 @@ namespace Southsand
 		{
 			App_Start.NHibernateProfilerBootstrapper.PreStart();
 
+			object id;
 			using (var session = Global.SessionFactory.OpenSession())
 			using (session.BeginTransaction())
 			{
-				var customer = session.Get<Customer>(1L);
-				Console.WriteLine(customer.HomeAddress.City);
+				var s = new Supplier
+					{
+						SupplierEmail = "s@s.com"
+					};
+				session.Save(s);
+				var e = new Employee
+					{
+						BusinessEmail = "e@e.com"
+					};
+				session.Save(e);
+
+				session.Save(new Email
+					{
+						Target = s
+					});
+
+				session.Save(new Email
+					{
+						Target = e
+					});
+
+				session.Transaction.Commit();
+			}
+
+			using (var session = Global.SessionFactory.OpenSession())
+			using (session.BeginTransaction())
+			{
+				var email = session.Get<Email>(1);
+
+				Console.WriteLine(email.Target);
+				
+				session.Transaction.Commit();
 			}
 
 			//using (var session = Global.SessionFactory.OpenSession())
