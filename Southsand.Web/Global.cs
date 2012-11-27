@@ -1,10 +1,10 @@
 ﻿using System;
 using NHibernate;
 using NHibernate.Cfg;
-using Southsand.Model;
+using Southsand.Web.Model;
 using Environment = System.Environment;
 
-namespace Southsand.Infrastructure
+namespace Southsand.Web
 {
 	public static class Global
 	{

@@ -3,25 +3,36 @@
 	assembly="Southsand"
 	namespace="Southsand.Model">
 
-	<class name="Supplier" table="Suppliers">
-		<id generator="identity" name="Id"/>
+	<class name="Supplier" table="Suppliers" batch-size="15">
+		<id generator="hilo" name="Id"/>
 		<property name="SupplierEmail"/>
 	</class>
 
 
-	<class name="Employee" table="Employees">
-		<id generator="identity" name="Id"/>
+	<class name="Employee" table="Employees"  batch-size="15">
+		<id generator="hilo" name="Id"/>
 		<property name="BusinessEmail"/>
 	</class>
 
 	<class name="Email" table="Emails">
-		<id generator="identity" name="Id"/>
-		<any name="Target" id-type="System.Int32" meta-type="System.String">
+		<id generator="hilo" name="Id"/>
+		<!--<any name="Target" id-type="System.Int32" meta-type="System.String">
 			<meta-value value="S" class="Supplier"/>
 			<meta-value value="E" class="Employee"/>
 			<column name="TargetType"/>
 			<column name="TargetId"/>
-		</any>
+		</any>-->
+
+		<set table="EmailTargets" name="Targets" batch-size="15">
+			<key column="EmailId"/>
+			<many-to-any id-type="System.Int32" meta-type="System.String">
+				<meta-value value="S" class="Supplier"/>
+				<meta-value value="E" class="Employee"/>
+				<column name="TargetType"/>
+				<column name="TargetId"/>
+			</many-to-any>
+		</set>
+
 	</class>
 
 

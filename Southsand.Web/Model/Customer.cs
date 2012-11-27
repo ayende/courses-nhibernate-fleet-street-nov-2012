@@ -1,4 +1,4 @@
-﻿namespace Southsand.Model
+﻿namespace Southsand.Web.Model
 {
 	public class Customer 
 	{

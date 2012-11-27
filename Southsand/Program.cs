@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Southsand.Infrastructure;
 using Southsand.Model;
 
@@ -19,39 +20,46 @@ namespace Southsand
 			using (var session = Global.SessionFactory.OpenSession())
 			using (session.BeginTransaction())
 			{
-				var s = new Supplier
+				var items = new List<object>();
+
+				for (int i = 0; i < 10; i++)
+				{
+					var s = new Supplier
 					{
 						SupplierEmail = "s@s.com"
 					};
-				session.Save(s);
-				var e = new Employee
+					session.Save(s);
+					
+					items.Add(s);
+
+					var e = new Employee
 					{
 						BusinessEmail = "e@e.com"
 					};
-				session.Save(e);
+					session.Save(e);
+					items.Add(e);
+				}
 
-				session.Save(new Email
+				id  = session.Save(new Email
 					{
-						Target = s
-					});
-
-				session.Save(new Email
-					{
-						Target = e
+						Targets = items
 					});
 
 				session.Transaction.Commit();
 			}
 
-			using (var session = Global.SessionFactory.OpenSession())
-			using (session.BeginTransaction())
-			{
-				var email = session.Get<Email>(1);
+			//using (var session = Global.SessionFactory.OpenSession())
+			//using (session.BeginTransaction())
+			//{
+			//	var email = session.Get<Email>(id);
 
-				Console.WriteLine(email.Target);
+			//	foreach (var target in email.Targets)
+			//	{
+			//		Console.WriteLine(target);
+			//	}
 				
-				session.Transaction.Commit();
-			}
+			//	session.Transaction.Commit();
+			//}
 
 			//using (var session = Global.SessionFactory.OpenSession())
 			//using (session.BeginTransaction())

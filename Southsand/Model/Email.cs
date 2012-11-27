@@ -1,9 +1,11 @@
-﻿namespace Southsand.Model
+﻿using System.Collections.Generic;
+
+namespace Southsand.Model
 {
 	public class Email
 	{
 		public virtual int Id { get; set; }
-		public virtual object Target { get; set; }
+		public virtual ICollection<object> Targets { get; set; }
 	}
 
 	public class Supplier
