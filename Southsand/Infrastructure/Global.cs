@@ -13,12 +13,16 @@ namespace Southsand.Infrastructure
 				var cfg = new Configuration()
 			   .DataBaseIntegration(properties =>
 			   {
-				   properties.SchemaAction = SchemaAutoAction.Create;
+				   //properties.SchemaAction = SchemaAutoAction.Recreate;
 				   properties.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
 				   properties.ConnectionStringName = Environment.MachineName;
 			   })
 			   .AddAssembly(typeof(Customer).Assembly);
 
+				//var persistentClass = cfg.GetClassMapping(typeof (Address));
+				//var property = persistentClass.GetProperty("CustomerCount");
+				//var selectable = property.ColumnIterator.First() as Formula;
+				//selectable.FormulaString = "(select count(*) from [Customers] /* whoo hoo*/ c where c.HomeAddress = Id)";
 				return cfg.BuildSessionFactory();
 			});
 
@@ -27,4 +31,5 @@ namespace Southsand.Infrastructure
 			get { return theSessionFactory.Value; }
 		}
 	}
+
 }

@@ -9,17 +9,30 @@
 		</id>
 		<property name="Name"/>
 		<property name="Birthday"/>
-		<many-to-one name="HomeAddress"/>
 
-		<bag name="Orders" cascade="all" inverse="true">
-			<key column="Customer"/>
-			<one-to-many class="Order"/>
-		</bag>
+		<component name="BillingAddress">
+			<property column="BillingCity" name="City"/>
+			<property column="BillingStreet" name="Street"/>
+			<property column="BillingZip"  name="Zip"/>
+			<property column="BillingNumber" name="Number"/>
+			<property column="BillingCountry" name="Country"/>
+		</component>
 
-		<bag name="Locations" table="Visits" inverse="true">
-			<key column="Customer"/>
-			<many-to-many column="Location" class="Location"/>
-		</bag>
+		<component name="HomeAddress">
+			<property column="HomeCity" name="City"/>
+			<property column="HomeStreet" name="Street"/>
+			<property column="HomeZip"  name="Zip"/>
+			<property column="HomeNumber" name="Number"/>
+			<property column="HomeCountry" name="Country"/>
+		</component>
+
+		<component name="WorkAddress">
+			<property column="WorkCity" name="City"/>
+			<property column="WorkStreet" name="Street"/>
+			<property column="WorkZip"  name="Zip"/>
+			<property column="WorkNumber" name="Number"/>
+			<property column="WorkCountry" name="Country"/>
+		</component>
 
 	</class>
 

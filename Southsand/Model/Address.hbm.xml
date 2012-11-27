@@ -3,7 +3,7 @@
 	assembly="Southsand"
 	namespace="Southsand.Model">
 
-	<class name="Address" table="Addresses">
+	<!--<class name="Address" table="Addresses">
 		<id name="Id">
 			<generator class="identity"/>
 		</id>
@@ -14,6 +14,6 @@
 		<property name="Country"/>
 		<property name="CustomerCount"
 			formula="(select count(*) from Customers c where c.HomeAddress = Id)"/>
-	</class>
+	</class>-->
 
 </hibernate-mapping>
