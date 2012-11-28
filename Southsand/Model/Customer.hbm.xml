@@ -7,20 +7,18 @@
 		<id name="CustomerId">
 			<generator class="increment"/>
 		</id>
-		<version name="Version"/>
 		<property name="Email"/>
-		<property name="Custom" type="Southsand.Model.JsonType, Southsand"/>
-		<property name="LastAccess"/>
+		<set name="Orders">
+			<key column="Customer"/>
+			<one-to-many class="Order"/>
+		</set>
 	</class>
 
-	<class name="LogEntry"  table="LogEntries">
+	<class name="Order"  table="Orders">
 		<id column="Id" type="System.Int32">
 			<generator class="identity"/>
 		</id>
-		<property name="Type"/>
-		<property name="User" column="`User`" />
-		<property name="EntityId"/>
-		<property name="At"/>
+		<many-to-one name="Customer"/>
 	</class>
 
 
