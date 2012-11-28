@@ -9,6 +9,18 @@
 		</id>
 		<version name="Version"/>
 		<property name="Email"/>
+		<property name="LastAccess"/>
 	</class>
+
+	<class name="LogEntry"  table="LogEntries">
+		<id column="Id" type="System.Int32">
+			<generator class="identity"/>
+		</id>
+		<property name="Type"/>
+		<property name="User" column="`User`" />
+		<property name="EntityId"/>
+		<property name="At"/>
+	</class>
+
 
 </hibernate-mapping>

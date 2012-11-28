@@ -1,6 +1,8 @@
 ﻿using System;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Event;
+using NHibernate.Event.Default;
 using Southsand.Model;
 using Environment = System.Environment;
 
@@ -13,16 +15,18 @@ namespace Southsand.Infrastructure
 				var cfg = new Configuration()
 			   .DataBaseIntegration(properties =>
 			   {
-				   properties.SchemaAction = SchemaAutoAction.Recreate;
+				   properties.SchemaAction = SchemaAutoAction.Update;
 				   properties.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
 				   properties.ConnectionStringName = Environment.MachineName;
 			   })
 			   .AddAssembly(typeof(Customer).Assembly);
 
-				//var persistentClass = cfg.GetClassMapping(typeof (Address));
-				//var property = persistentClass.GetProperty("CustomerCount");
-				//var selectable = property.ColumnIterator.First() as Formula;
-				//selectable.FormulaString = "(select count(*) from [Customers] /* whoo hoo*/ c where c.HomeAddress = Id)";
+				cfg.SetListeners(ListenerType.PreLoad, new IPreLoadEventListener[]
+					{
+						new DefaultPreLoadEventListener(), 
+						new WhoWatchesTheWatcherPreLoadListener()
+					});
+
 				return cfg.BuildSessionFactory();
 			});
 
