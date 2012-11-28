@@ -4,18 +4,27 @@
 	namespace="Southsand.Web.Model">
 
 	<class name="Customer"  table="Customers">
+		<cache usage="nonstrict-read-write"/>
 		<id name="CustomerId">
 			<generator class="identity"/>
 		</id>
-		<version name="Version"/>
-		<property name="Email"/>
+		<property name="Name"/>
+		<many-to-one name="Person"/>
+
+		<set name="Related" table="Relations">
+			<cache usage="nonstrict-read-write"/>
+			<key column="Customer"/>
+			<many-to-many class="Person" column="Person"/>
+		</set>
 	</class>
 
-	<class name="Order"  table="Orders">
+	<class name ="Person" table="People">
+		<cache usage="nonstrict-read-write"/>
 		<id name="Id">
 			<generator class="identity"/>
 		</id>
-		<many-to-one name="Customer"/>
+		<property name="Email"/>
 	</class>
+
 
 </hibernate-mapping>

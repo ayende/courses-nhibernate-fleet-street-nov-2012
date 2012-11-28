@@ -15,10 +15,10 @@ namespace Southsand.Web
 		public override NHibernate.SqlCommand.SqlString OnPrepareStatement(NHibernate.SqlCommand.SqlString sql)
 		{
 
-			if (NumberOfRequests++ > 10)
-			{
-				new SoundPlayer("http://www.shockwave-sound.com/sound-effects/scream-sounds/2scream.wav").PlaySync();
-			}
+			//if (NumberOfRequests++ > 10)
+			//{
+			//	new SoundPlayer("http://www.shockwave-sound.com/sound-effects/scream-sounds/2scream.wav").PlaySync();
+			//}
 			return base.OnPrepareStatement(sql);
 		}	 
 	}

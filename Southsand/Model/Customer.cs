@@ -162,7 +162,7 @@ namespace Southsand.Model
 
 		public Type ReturnedType
 		{
-			get { return typeof(IDictionary<string, string>); }
+			get { return typeof(bool); }
 		}
 
 		public bool IsMutable

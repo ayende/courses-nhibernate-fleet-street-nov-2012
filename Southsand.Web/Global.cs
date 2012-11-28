@@ -1,5 +1,6 @@
 ﻿using System;
 using NHibernate;
+using NHibernate.Cache;
 using NHibernate.Cfg;
 using Southsand.Web.Model;
 using Environment = System.Environment;
@@ -13,18 +14,19 @@ namespace Southsand.Web
 				var cfg = new Configuration()
 			   .DataBaseIntegration(properties =>
 			   {
-				   //properties.SchemaAction = SchemaAutoAction.Recreate;
+				   properties.SchemaAction = SchemaAutoAction.Update;
 				   properties.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
 				   properties.ConnectionStringName = Environment.MachineName;
 			   })
 			   .SetInterceptor(new ScreamDamnYou())
+			   .Cache(properties =>
+				   {
+					   properties.Provider<HashtableCacheProvider>();
+					   properties.UseQueryCache = true;
+				   })
 			   .AddAssembly(typeof(Customer).Assembly);
 
-				//var persistentClass = cfg.GetClassMapping(typeof (Address));
-				//var property = persistentClass.GetProperty("CustomerCount");
-				//var selectable = property.ColumnIterator.First() as Formula;
-				//selectable.FormulaString = "(select count(*) from [Customers] /* whoo hoo*/ c where c.HomeAddress = Id)";
-				return cfg.BuildSessionFactory();
+			return cfg.BuildSessionFactory();
 			});
 
 		public static ISessionFactory SessionFactory

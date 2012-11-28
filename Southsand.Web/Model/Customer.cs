@@ -1,15 +1,19 @@
-﻿namespace Southsand.Web.Model
+﻿using System.Collections.Generic;
+
+namespace Southsand.Web.Model
 {
 	public class Customer 
 	{
 		public virtual long CustomerId { get; set; }
-		public virtual string Email { get; set; }
-		public virtual int Version { get; set; }
+		public virtual string Name{ get; set; }
+		public virtual Person Person { get; set; }
+
+		public virtual ICollection<Person> Related{ get; set; }
 	}
 
-	public class Order
+	public class Person
 	{
-		public virtual int Id { get; set; }
-		public virtual Customer Customer { get; set; }
+		public virtual long Id { get; set; }
+		public virtual string Email { get; set; }
 	}
 }
