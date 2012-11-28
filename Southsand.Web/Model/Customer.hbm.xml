@@ -5,10 +5,17 @@
 
 	<class name="Customer"  table="Customers">
 		<id name="CustomerId">
-			<generator class="increment"/>
+			<generator class="identity"/>
 		</id>
 		<version name="Version"/>
 		<property name="Email"/>
+	</class>
+
+	<class name="Order"  table="Orders">
+		<id name="Id">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name="Customer"/>
 	</class>
 
 </hibernate-mapping>

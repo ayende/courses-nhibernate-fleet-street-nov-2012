@@ -13,10 +13,11 @@ namespace Southsand.Web
 				var cfg = new Configuration()
 			   .DataBaseIntegration(properties =>
 			   {
-				   properties.SchemaAction = SchemaAutoAction.Recreate;
+				   //properties.SchemaAction = SchemaAutoAction.Recreate;
 				   properties.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
 				   properties.ConnectionStringName = Environment.MachineName;
 			   })
+			   .SetInterceptor(new ScreamDamnYou())
 			   .AddAssembly(typeof(Customer).Assembly);
 
 				//var persistentClass = cfg.GetClassMapping(typeof (Address));
