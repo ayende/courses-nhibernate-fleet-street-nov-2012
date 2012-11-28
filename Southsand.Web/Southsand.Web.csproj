@@ -45,6 +45,10 @@
       <HintPath>..\packages\NHibernateProfiler.1.0.0.955\lib\Net40\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\Southsand\bin\Debug\NHibernate.dll</HintPath>
     </Reference>
@@ -69,9 +73,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>

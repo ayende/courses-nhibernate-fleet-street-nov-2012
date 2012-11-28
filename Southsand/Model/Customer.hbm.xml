@@ -9,6 +9,7 @@
 		</id>
 		<version name="Version"/>
 		<property name="Email"/>
+		<property name="Custom" type="Southsand.Model.JsonType, Southsand"/>
 		<property name="LastAccess"/>
 	</class>
 

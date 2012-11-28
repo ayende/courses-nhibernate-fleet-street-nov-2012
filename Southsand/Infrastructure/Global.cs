@@ -21,12 +21,6 @@ namespace Southsand.Infrastructure
 			   })
 			   .AddAssembly(typeof(Customer).Assembly);
 
-				cfg.SetListeners(ListenerType.PreLoad, new IPreLoadEventListener[]
-					{
-						new DefaultPreLoadEventListener(), 
-						new WhoWatchesTheWatcherPreLoadListener()
-					});
-
 				return cfg.BuildSessionFactory();
 			});
 

@@ -20,7 +20,7 @@ namespace Southsand
 			using (var session = Global.SessionFactory.OpenSession())
 			using (session.BeginTransaction())
 			{
-				var customer = session.Get<Customer>(1L);
+				var customer = session.Get<Customer>(2L);
 				session.Transaction.Commit();
 			}
 
